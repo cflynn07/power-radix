@@ -33,7 +33,10 @@ For example, a number in base 256 can be representated by the array [100, 10] (M
 [100,10].base(256).toString(10) #=> "25610"
 ```
 
-power-radix also supports custom character sets. You can specify an array of characters to use as symbols for a base.
+power-radix also supports custom character sets. By default, power-radix uses the following character set:  
+`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`
+
+You can optionally specify an array of characters to use as symbols for a base to give your output a custom encoding.
 ```
 var base = ['Q', 'W', 'E', 'R', 'T', 'Y', I', 'O', 'U];
 '10'.base(10).toArray(base) #=> ['W', 'Q']

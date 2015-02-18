@@ -7,6 +7,9 @@
 /* Constructor */
 module.exports = PowerRadix;
 
+/* Constants */
+var DEFAULT_CHARACTER_SET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
 /**
  * Class encapsulating radix conversion operations
  * @class
@@ -26,7 +29,7 @@ function PowerRadix (number, radix) {
  * @return this
  */
 PowerRadix.prototype.toArray = function (outputRadix) {
-  return [''];
+  return [];
 };
 
 /**

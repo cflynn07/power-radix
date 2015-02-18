@@ -3,10 +3,7 @@
 var PowerRadix = require('index');
 var debug = require('lib/debug')(__filename);
 
-var BASE_64_CHARACTER_SET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-
-describe('invalid uses', function () {
-});
+//var DEFAULT_CHARACTER_SET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
 describe('edge cases', function () {
   it('should handle empty string argument gracefully', function () {
@@ -15,7 +12,7 @@ describe('edge cases', function () {
       powerRadix = new PowerRadix('', i);
       expect(powerRadix).toBeTruthy();
       for (var k=2; k<256; k++) {
-        expect(powerRadix.toArray(k)).toEqual(['']);
+        expect(powerRadix.toArray(k)).toEqual([]);
         expect(powerRadix.toString(k)).toEqual('');
       }
     }
@@ -27,7 +24,7 @@ describe('edge cases', function () {
       powerRadix = new PowerRadix([], i);
       expect(powerRadix).toBeTruthy();
       for (var k=2; k<256; k++) {
-        expect(powerRadix.toArray(k)).toEqual(['']);
+        expect(powerRadix.toArray(k)).toEqual([]);
         expect(powerRadix.toString(k)).toEqual('');
       }
     }
@@ -35,20 +32,40 @@ describe('edge cases', function () {
 
   it('should throw an exception for invalid radix argument', function () {
     expect(new PowerRadix(0, 0)).toThrow();
-    expect(new PowerRadix(0, 1)).toThrow();
+    //expect(new PowerRadix(0, 1)).toThrow();
     expect(new PowerRadix(0, -1)).toThrow();
   });
 });
 
-describe('conversions', function () {
-  it('should output value equal to constructor input if output radix '+
+describe('radix conversions', function () {
+  xit('should output value equal to constructor input if output radix '+
      'equals input radix', function () {
-    for (var i=0; i<BASE_64_CHARACTER_SET.length; i++) {
-      for (var k=2; k<BASE_64_CHARACTER_SET.length; k++) {
-        expect(new PowerRadix(k, i).toArray(i)).toEqual();
-        expect(new PowerRadix(k, i).toString(i)).toEqual();
+    var c;
+    for (var i=0; i<DEFAULT_CHARACTER_SET.length; i++) {
+      for (var k=2; k<DEFAULT_CHARACTER_SET.length; k++) {
+        c = DEFAULT_CHARACTER_SET[k];
+        expect(new PowerRadix(c, i).toArray(i)).toEqual([c]);
+        expect(new PowerRadix(c, i).toString(i)).toEqual(c);
       }
     }
-    expect(true).toBe(true);
   });
+
+  xit('should convert from base 2 to base 8', function () {
+    expect(new PowerRadix('101', 2).toString(8)).toEqual('5');
+    expect(new PowerRadix('101', 2).toArray(8)).toEqual(['5']);
+    expect(new PowerRadix([1,0,1], 2).toString(8)).toEqual('5');
+  });
+
+  xit('should convert from base 2 to base 10', function () {
+  });
+
+  xit('should convert from base 2 to base 16', function () {
+  });
+
+  xit('should convert from base 2 to base 20', function () {
+  });
+
+  xit('should convert from base 2 to base 62', function () {
+  });
+
 });
