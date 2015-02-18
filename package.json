@@ -1,0 +1,37 @@
+{
+  "name": "power-radix",
+  "version": "1.0.0",
+  "description": "Library for converting numbers from one radix representation (encoding) to another, with optional custom defined encodings. Inspired by rubyworks/radix.",
+  "main": "index.js",
+  "scripts": {
+    "test": "DEBUG=power-radix* NODE_PATH=./ jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cflynn07/power-radix.git"
+  },
+  "keywords": [
+    "radix",
+    "base",
+    "convert",
+    "power",
+    "math",
+    "hex",
+    "base64",
+    "base58",
+    "base10"
+  ],
+  "author": "Casey Flynn <cflynn.us@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cflynn07/power-radix/issues"
+  },
+  "homepage": "https://github.com/cflynn07/power-radix",
+  "devDependencies": {
+    "istanbul": "^0.3.5"
+  },
+  "dependencies": {
+    "debug": "^2.1.1",
+    "jasmine": "^2.2.1"
+  }
+}
