@@ -13,18 +13,40 @@ var it = lab.it;
 var PowerRadix = require('../lib/index');
 var debug = require('../lib/debug')(__filename);
 
-describe('edge cases', function () {
-
-  it('should handle empty string argument gracefully', function (done) {
+describe('PowerRadix', function () {
+  it('should convert "1" from radix 2-62 to radix 2-62 '+
+     'using default character set', function (done) {
     var powerRadix;
-    for (var i=2; i<256; i++) {
+    for (var i=2; i<62; i++) {
       powerRadix = new PowerRadix([1], i);
-      powerRadix.toArray(10);
-      expect(true).to.equal(true);
-      //expect(powerRadix).toBeTruthy();
-      for (var k=2; k<256; k++) {
-        //expect(powerRadix.toArray(k)).to.equal([]);
-        //expect(powerRadix.toString(k)).to.equal('');
+      expect(powerRadix).to.be.ok;
+      var res;
+      for (var k=2; k<62; k++) {
+        res = powerRadix.toArray(k);
+        expect(res).to.be.an.array();
+        expect(res).to.deep.include(['1']);
+        res = powerRadix.toString(k);
+        expect(res).to.be.a.string();
+        expect(res).to.equal('1');
+      }
+    }
+    done();
+  });
+
+  it('should convert "2" from radix 3-62 to radix 3-62 '+
+     'using default character set', function (done) {
+    var powerRadix;
+    for (var i=3; i<62; i++) {
+      powerRadix = new PowerRadix([2], i);
+      expect(powerRadix).to.be.ok;
+      var res;
+      for (var k=3; k<62; k++) {
+        res = powerRadix.toArray(k);
+        expect(res).to.be.an.array();
+        expect(res).to.deep.include(['2']);
+        res = powerRadix.toString(k);
+        expect(res).to.be.a.string();
+        expect(res).to.equal('2');
       }
     }
     done();
@@ -51,12 +73,26 @@ describe('edge cases', function () {
   });
 */
 
-});
-
+  it('should correctly convert from lesser radix to greater radix', function (done) {
+    var powerRadix;
+    for (var i=2; i<62; i++) {
+      powerRadix = new PowerRadix([1], i);
+      expect(powerRadix).to.be.ok;
+      var res;
+      for (var k=2; k<62; k++) {
+        res = powerRadix.toArray(k);
+        expect(res).to.be.an.array();
+        expect(res).to.deep.include(['1']);
+        res = powerRadix.toString(k);
+        expect(res).to.be.a.string();
+        expect(res).to.equal('1');
+      }
+    }
+    done();
+  });
 /*
-describe('radix conversions', function () {
-  xit('should output value equal to constructor input if output radix '+
-     'equals input radix', function () {
+  it('should output value equal to constructor input if output radix '+
+     'equals input radix', function (done) {
     var c;
     for (var i=0; i<DEFAULT_CHARACTER_SET.length; i++) {
       for (var k=2; k<DEFAULT_CHARACTER_SET.length; k++) {
@@ -66,7 +102,8 @@ describe('radix conversions', function () {
       }
     }
   });
-
+*/
+/*
   xit('should convert from base 2 to base 8', function () {
     expect(new PowerRadix('101', 2).toString(8)).toEqual('5');
     expect(new PowerRadix('101', 2).toArray(8)).toEqual(['5']);
@@ -84,6 +121,6 @@ describe('radix conversions', function () {
 
   xit('should convert from base 2 to base 62', function () {
   });
+*/
 
 });
-*/
