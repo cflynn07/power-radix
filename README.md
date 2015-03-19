@@ -44,8 +44,13 @@ power-radix also supports custom character encodings. By default, power-radix us
 You can optionally specify an array of characters to use as symbols for a radix to give your output a custom encoding.
 ```js
 var base = ['Q', 'W', 'E', 'R', 'T', 'Y', I', 'O', 'U'];
-new PowerRadix([1, 0], 2).toArray(base);  // ['W', 'Q']
-new PowerRadix([1, 0], 2).toString(base); // "WQ"
+new PowerRadix([1, 0], 10).toArray(base); // ['W', 'Q']
+new PowerRadix('10', 10).toArray(base);   // ['W', 'Q']
+new PowerRadix(10, 10).toArray(base);     // ['W', 'Q']
+
+new PowerRadix([1, 0], 10).toString(base); // "WQ"
+new PowerRadix('10', 10).toString(base);   // "WQ"
+new PowerRadix(10, 10).toString(base);     // "WQ"
 ```
 
 Installing
