@@ -15,7 +15,6 @@ var debug = require('../lib/debug')(__filename);
 var encodings = require('./fixtures/encodings');
 
 describe('PowerRadix', function () {
-
   it('should throw an exception when passed invalid arguments', function (done) {
     var powerRadix = new PowerRadix(['F', 'F'], ['A', 'B']);
     var throws = function () {
