@@ -1,6 +1,9 @@
 power-radix
 ===========
-[![Build Status](https://travis-ci.org/cflynn07/power-radix.svg)](https://travis-ci.org/cflynn07/power-radix)  
+[![Build Status](https://travis-ci.org/cflynn07/power-radix.svg)](https://travis-ci.org/cflynn07/power-radix)
+[![Dependency Status](https://david-dm.org/cflynn07/power-radix.svg)](https://david-dm.org/cflynn07/power-radix)
+[![devDependency Status](https://david-dm.org/cflynn07/power-radix/dev-status.svg)](https://david-dm.org/cflynn07/power-radix#info=devDependencies)
+
 [![NPM](https://nodei.co/npm/power-radix.png?compact=true)](https://nodei.co/npm/power-radix/)  
 
 Library for converting numbers from one radix representation (encoding) to another, with optional custom defined encodings. Inspired by rubyworks/radix.
