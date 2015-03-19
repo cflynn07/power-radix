@@ -12,115 +12,184 @@ var it = lab.it;
 
 var PowerRadix = require('../lib/index');
 var debug = require('../lib/debug')(__filename);
+var encodings = require('./fixtures/encodings');
 
 describe('PowerRadix', function () {
-  it('should convert "1" from radix 2-62 to radix 2-62 '+
+
+  it('should handle empty argument', function (done) {
+    var powerRadix;
+    powerRadix = new PowerRadix([], 10);
+    expect(powerRadix).to.be.ok;
+    expect(powerRadix.toArray(10)).to.deep.equal(['0']);
+    expect(powerRadix.toString(10)).to.deep.equal('0');
+
+    powerRadix = new PowerRadix('', 10);
+    expect(powerRadix).to.be.ok;
+    expect(powerRadix.toArray(10)).to.deep.equal(['0']);
+    expect(powerRadix.toString(10)).to.deep.equal('0');
+
+    powerRadix = new PowerRadix(0, 10);
+    expect(powerRadix).to.be.ok;
+    expect(powerRadix.toArray(10)).to.deep.equal(['0']);
+    expect(powerRadix.toString(10)).to.deep.equal('0');
+    done();
+  });
+
+  it('should convert [0..9] from radix n[2..62] to radix n[n+1..62] '+
      'using default character set', function (done) {
     var powerRadix;
-    for (var i=2; i<62; i++) {
-      powerRadix = new PowerRadix([1], i);
-      expect(powerRadix).to.be.ok;
-      var res;
-      for (var k=2; k<62; k++) {
-        res = powerRadix.toArray(k);
-        expect(res).to.be.an.array();
-        expect(res).to.deep.include(['1']);
-        res = powerRadix.toString(k);
-        expect(res).to.be.a.string();
-        expect(res).to.equal('1');
+    for (var j=0; j<10; j++) {
+      for (var i=j+2; i<62; i++) {
+        powerRadix = new PowerRadix([j], i);
+        expect(powerRadix).to.be.ok;
+        var res;
+        for (var k=i; k<62; k++) {
+          res = powerRadix.toArray(k);
+          expect(res).to.be.an.array();
+          expect(res).to.deep.equal([j+'']);
+          res = powerRadix.toString(k);
+          expect(res).to.be.a.string();
+          expect(res).to.equal(j+'');
+        }
       }
     }
     done();
   });
 
-  it('should convert "2" from radix 3-62 to radix 3-62 '+
-     'using default character set', function (done) {
+  it('should convert from base 2 to base 8', function (done) {
     var powerRadix;
-    for (var i=3; i<62; i++) {
-      powerRadix = new PowerRadix([2], i);
+    [
+      ['0',    ['0'],     ['A']],
+      ['1',    ['1'],     ['B']],
+      ['10',   ['2'],     ['C']],
+      ['11',   ['3'],     ['D']],
+      ['100',  ['4'],     ['E']],
+      ['101',  ['5'],     ['F']],
+      ['110',  ['6'],     ['G']],
+      ['111',  ['7'],     ['H']],
+      ['1000', ['1','0'], ['B','A']],
+      ['1001', ['1','1'], ['B','B']],
+      ['1010', ['1','2'], ['B','C']],
+      ['1011', ['1','3'], ['B','D']],
+      ['1100', ['1','4'], ['B','E']],
+      ['1101', ['1','5'], ['B','F']],
+      ['1110', ['1','6'], ['B','G']],
+      ['1111', ['1','7'], ['B','H']]
+    ].forEach(function (conversionPairs) {
+      powerRadix = new PowerRadix(conversionPairs[0].split(''), 2);
       expect(powerRadix).to.be.ok;
-      var res;
-      for (var k=3; k<62; k++) {
-        res = powerRadix.toArray(k);
-        expect(res).to.be.an.array();
-        expect(res).to.deep.include(['2']);
-        res = powerRadix.toString(k);
-        expect(res).to.be.a.string();
-        expect(res).to.equal('2');
-      }
-    }
+      expect(powerRadix.toArray(8)).to.deep.equal(conversionPairs[1]);
+      expect(powerRadix.toString(8)).to.equal(conversionPairs[1].join(''));
+
+      powerRadix = new PowerRadix(conversionPairs[0], 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(8)).to.deep.equal(conversionPairs[1]);
+      expect(powerRadix.toString(8)).to.equal(conversionPairs[1].join(''));
+
+      powerRadix = new PowerRadix(conversionPairs[0], 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(encodings.base8)).to.deep.equal(conversionPairs[1]);
+      expect(powerRadix.toString(encodings.base8)).to.equal(conversionPairs[1].join(''));
+
+      powerRadix = new PowerRadix(conversionPairs[0], 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(encodings.base8A)).to.deep.equal(conversionPairs[2]);
+      expect(powerRadix.toString(encodings.base8A)).to.equal(conversionPairs[2].join(''));
+    });
+    done();
+  });
+
+  it('should convert from base 2 to base 10', function (done) {
+    var powerRadix;
+    [
+      ['0',    ['0'],     ['A']],
+      ['1',    ['1'],     ['B']],
+      ['10',   ['2'],     ['C']],
+      ['11',   ['3'],     ['D']],
+      ['100',  ['4'],     ['E']],
+      ['101',  ['5'],     ['F']],
+      ['110',  ['6'],     ['G']],
+      ['111',  ['7'],     ['H']],
+      ['1000', ['8'],     ['I']],
+      ['1001', ['9'],     ['J']],
+      ['1010', ['1','0'], ['B','A']],
+      ['1011', ['1','1'], ['B','B']],
+      ['1100', ['1','2'], ['B','C']],
+      ['1101', ['1','3'], ['B','D']],
+      ['1110', ['1','4'], ['B','E']],
+      ['1111', ['1','5'], ['B','F']]
+    ].forEach(function (conversionPairs) {
+      powerRadix = new PowerRadix(conversionPairs[0].split(''), 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(10)).to.deep.equal(conversionPairs[1]);
+      expect(powerRadix.toString(10)).to.equal(conversionPairs[1].join(''));
+
+      powerRadix = new PowerRadix(conversionPairs[0], 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(10)).to.deep.equal(conversionPairs[1]);
+      expect(powerRadix.toString(10)).to.equal(conversionPairs[1].join(''));
+
+      powerRadix = new PowerRadix(conversionPairs[0], 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(encodings.base10)).to.deep.equal(conversionPairs[1]);
+      expect(powerRadix.toString(encodings.base10)).to.equal(conversionPairs[1].join(''));
+
+      powerRadix = new PowerRadix(conversionPairs[0], 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(encodings.base10A)).to.deep.equal(conversionPairs[2]);
+      expect(powerRadix.toString(encodings.base10A)).to.equal(conversionPairs[2].join(''));
+    });
+    done();
+  });
+
+  it('should convert from base 2 to base 16', function (done) {
+    var powerRadix;
+    [
+      ['0',    ['0'], ['A']],
+      ['1',    ['1'], ['B']],
+      ['10',   ['2'], ['C']],
+      ['11',   ['3'], ['D']],
+      ['100',  ['4'], ['E']],
+      ['101',  ['5'], ['F']],
+      ['110',  ['6'], ['G']],
+      ['111',  ['7'], ['H']],
+      ['1000', ['8'], ['I']],
+      ['1001', ['9'], ['J']],
+      ['1010', ['A'], ['K']],
+      ['1011', ['B'], ['L']],
+      ['1100', ['C'], ['M']],
+      ['1101', ['D'], ['N']],
+      ['1110', ['E'], ['O']],
+      ['1111', ['F'], ['P']]
+    ].forEach(function (conversionPairs) {
+      powerRadix = new PowerRadix(conversionPairs[0].split(''), 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(16)).to.deep.equal(conversionPairs[1]);
+      expect(powerRadix.toString(16)).to.equal(conversionPairs[1].join(''));
+
+      powerRadix = new PowerRadix(conversionPairs[0], 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(16)).to.deep.equal(conversionPairs[1]);
+      expect(powerRadix.toString(16)).to.equal(conversionPairs[1].join(''));
+
+      powerRadix = new PowerRadix(conversionPairs[0], 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(encodings.base16)).to.deep.equal(conversionPairs[1]);
+      expect(powerRadix.toString(encodings.base16)).to.equal(conversionPairs[1].join(''));
+
+      powerRadix = new PowerRadix(conversionPairs[0], 2);
+      expect(powerRadix).to.be.ok;
+      expect(powerRadix.toArray(encodings.base16A)).to.deep.equal(conversionPairs[2]);
+      expect(powerRadix.toString(encodings.base16A)).to.equal(conversionPairs[2].join(''));
+    });
     done();
   });
 
 /*
-  it('should handle empty array argument gracefully', function () {
-    var powerRadix;
-    for (var i=2; i<256; i++) {
-      powerRadix = new PowerRadix([], i);
-      expect(powerRadix).toBeTruthy();
-      for (var k=2; k<256; k++) {
-        expect(powerRadix.toArray(k)).toEqual([]);
-        expect(powerRadix.toString(k)).toEqual('');
-      }
-
-      }
+  it('should convert from base 2 to base 20', function (done) {
   });
 
-  it('should throw an exception for invalid radix argument', function () {
-    expect(new PowerRadix(0, 0)).toThrow();
-    //expect(new PowerRadix(0, 1)).toThrow();
-    expect(new PowerRadix(0, -1)).toThrow();
+  it('should convert from base 2 to base 62', function (done) {
   });
 */
-
-  it('should correctly convert from lesser radix to greater radix', function (done) {
-    var powerRadix;
-    for (var i=2; i<62; i++) {
-      powerRadix = new PowerRadix([1], i);
-      expect(powerRadix).to.be.ok;
-      var res;
-      for (var k=2; k<62; k++) {
-        res = powerRadix.toArray(k);
-        expect(res).to.be.an.array();
-        expect(res).to.deep.include(['1']);
-        res = powerRadix.toString(k);
-        expect(res).to.be.a.string();
-        expect(res).to.equal('1');
-      }
-    }
-    done();
-  });
-/*
-  it('should output value equal to constructor input if output radix '+
-     'equals input radix', function (done) {
-    var c;
-    for (var i=0; i<DEFAULT_CHARACTER_SET.length; i++) {
-      for (var k=2; k<DEFAULT_CHARACTER_SET.length; k++) {
-        c = DEFAULT_CHARACTER_SET[k];
-        expect(new PowerRadix(c, i).toArray(i)).toEqual([c]);
-        expect(new PowerRadix(c, i).toString(i)).toEqual(c);
-      }
-    }
-  });
-*/
-/*
-  xit('should convert from base 2 to base 8', function () {
-    expect(new PowerRadix('101', 2).toString(8)).toEqual('5');
-    expect(new PowerRadix('101', 2).toArray(8)).toEqual(['5']);
-    expect(new PowerRadix([1,0,1], 2).toString(8)).toEqual('5');
-  });
-
-  xit('should convert from base 2 to base 10', function () {
-  });
-
-  xit('should convert from base 2 to base 16', function () {
-  });
-
-  xit('should convert from base 2 to base 20', function () {
-  });
-
-  xit('should convert from base 2 to base 62', function () {
-  });
-*/
-
 });
