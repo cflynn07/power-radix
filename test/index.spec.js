@@ -16,6 +16,15 @@ var encodings = require('./fixtures/encodings');
 
 describe('PowerRadix', function () {
 
+  it('should throw an exception when passed invalid arguments', function (done) {
+    var powerRadix = new PowerRadix(['F', 'F'], ['A', 'B']);
+    var throws = function () {
+      powerRadix.toString(10);
+    }
+    expect(throws).to.throw(Error, 'invalid target: F not found in target encoding');
+    done();
+  });
+
   it('should handle empty argument', function (done) {
     var powerRadix;
     powerRadix = new PowerRadix([], 10);
