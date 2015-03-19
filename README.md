@@ -60,3 +60,7 @@ Testing
 // Tests + coverage reports are run using Lab
 $ npm test
 ```
+
+License
+-------
+[MIT](https://raw.githubusercontent.com/cflynn07/power-radix/master/LICENSE)
