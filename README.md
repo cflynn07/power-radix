@@ -1,5 +1,6 @@
 power-radix
 ===========
+[![Build Status](https://travis-ci.org/cflynn07/power-radix.svg)](https://travis-ci.org/cflynn07/power-radix)  
 
 Library for converting numbers from one radix representation (encoding) to another, with optional custom defined encodings. Inspired by rubyworks/radix.
 
