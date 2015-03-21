@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/cflynn07/power-radix",
   "dependencies": {
+    "bigi": "^1.4.0",
     "debug": "^2.1.1"
   },
   "devDependencies": {
