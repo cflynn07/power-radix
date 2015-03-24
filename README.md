@@ -1,6 +1,8 @@
 power-radix
 ===========
 [![Build Status](https://travis-ci.org/cflynn07/power-radix.svg)](https://travis-ci.org/cflynn07/power-radix)
+[![Code Climate](https://codeclimate.com/github/cflynn07/power-radix/badges/gpa.svg)](https://codeclimate.com/github/cflynn07/power-radix)
+[![Test Coverage](https://codeclimate.com/github/cflynn07/power-radix/badges/coverage.svg)](https://codeclimate.com/github/cflynn07/power-radix)
 [![Dependency Status](https://david-dm.org/cflynn07/power-radix.svg)](https://david-dm.org/cflynn07/power-radix)
 [![devDependency Status](https://david-dm.org/cflynn07/power-radix/dev-status.svg)](https://david-dm.org/cflynn07/power-radix#info=devDependencies)
 
