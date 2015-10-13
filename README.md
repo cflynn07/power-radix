@@ -86,6 +86,8 @@ Testing
 ```
 // Tests + coverage reports are run using Lab
 $ npm test
+// Test coverage reports
+npm run test-cov # will auto-open Google Chrome with html coverage report
 ```
 
 License
