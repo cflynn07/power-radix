@@ -11,7 +11,6 @@ var expect = Code.expect;
 var it = lab.it;
 
 var PowerRadix = require('../lib/index');
-var debug = require('../lib/debug')(__filename);
 var encodings = require('./fixtures/encodings');
 
 describe('PowerRadix', function () {
