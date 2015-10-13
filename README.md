@@ -63,11 +63,16 @@ Or specify an array of characters to use as symbols for the base radix
 ```js
 var base = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
 var stdBase10 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-new PowerRadix(base, ['W', 'Q']).toArray(stdBase10);   // [1, 0]
-new PowerRadix(base.join(''), ['W', 'Q']).toArray(10); // [1, 0]
+new PowerRadix(['W', 'Q'], base).toArray(stdBase10);   // [1, 0]
+new PowerRadix(['W', 'Q'], base.join('')).toArray(10); // [1, 0]
+new PowerRadix(['W', 'Q'].join(''), base).toArray(stdBase10);   // [1, 0]
+new PowerRadix(['W', 'Q'].join(''), base.join('')).toArray(10); // [1, 0]
 
-new PowerRadix(base, ['W', 'Q']).toString(stdBase10);   // "10"
-new PowerRadix(base.join(''), ['W', 'Q']).toString(10); // "10"
+new PowerRadix(['W', 'Q'], base).toString(stdBase10);   // "10"
+new PowerRadix(['W', 'Q'], base.join('')).toString(10); // "10"
+new PowerRadix(['W', 'Q'].join(), base).toString(stdBase10);   // "10"
+new PowerRadix(['W', 'Q'].join(), base.join('')).toString(10); // "10"
+
 ```
 
 Installing
