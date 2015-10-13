@@ -193,6 +193,18 @@ describe('PowerRadix', function () {
     done();
   });
 
+  // http://stackoverflow.com/questions/26083943/converting-a-large-base-62-value-to-base-16-with-javascript/33072743#33072743
+  it('should convert from base 62 to base 16', function (done) {
+    var base16Encoding = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
+    // happens to be identical to default encoding used by PowerRadix
+    var base62Encoding = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+    var base62Val = '4u8LPK581OHn7kRqRqP9ks';
+    var expectedBase16ConvertedVal = 'A12D08BC6D93BC4E8EA847434C960416';
+    var powerRadix = new PowerRadix(base62Val, base62Encoding);
+    expect(powerRadix.toString(base16Encoding)).to.equal(expectedBase16ConvertedVal);
+    done();
+  });
+
 /*
   it('should convert from base 2 to base 20', function (done) {
   });
