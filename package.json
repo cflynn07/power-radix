@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "./node_modules/.bin/jshint",
-    "test": "npm run lint; DEBUG=power-radix* NODE_PATH=./ ./node_modules/.bin/lab -c"
+    "test": "npm run lint; DEBUG=power-radix* NODE_PATH=./ lab -c",
+    "test-cov": "rm coverage/coverage.html; NODE_PATH=./ lab -c -r html > coverage/coverage.html; open -a 'Google Chrome' coverage/coverage.html"
   },
   "repository": {
     "type": "git",
