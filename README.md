@@ -8,7 +8,8 @@ power-radix
 
 [![NPM](https://nodei.co/npm/power-radix.png?compact=true)](https://nodei.co/npm/power-radix/)  
 
-Library for converting numbers from one radix representation (encoding) to another, with optional custom defined encodings. Inspired by rubyworks/radix.
+Library for converting numbers from one radix representation (encoding) to another, with optional 
+custom defined encodings. Inspired by rubyworks/radix.
 
 Features
 --------
@@ -31,7 +32,8 @@ But JavaScript limits you to radix values 2 - 36.
 ```
 
 power-radix provides the means of converting to and from any base.  
-For example, a number in base 256 can be representated by the array [100, 10] (Math.pow(100, 256) + Math.pow(10, 1)) and can be converted to base 10.
+For example, a number in base 256 can be representated by the array [100, 10] (Math.pow(100, 256) +
+Math.pow(10, 1)) and can be converted to base 10.
 ```js
 // as an array
 new PowerRadix([100, 10], 256).toArray(10); // ['2', '5', '6', '1', '0']
@@ -40,10 +42,12 @@ new PowerRadix([100, 10], 256).toArray(10); // ['2', '5', '6', '1', '0']
 new PowerRadix([100, 10], 256).toString(10); // "25610"
 ```
 
-power-radix also supports custom character encodings. By default, power-radix uses the following character encoding:  
+power-radix also supports custom character encodings as base and targed radixes. By default, 
+power-radix uses the following character encoding:  
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`
 
-You can optionally specify an array of characters to use as symbols for a radix to give your output a custom encoding.
+You can optionally specify an array of characters to use as symbols for a radix to give your output
+a custom encoding.
 ```js
 var base = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
 new PowerRadix([1, 0], 10).toArray(base); // ['W', 'Q']
@@ -53,6 +57,17 @@ new PowerRadix(10, 10).toArray(base);     // ['W', 'Q']
 new PowerRadix([1, 0], 10).toString(base); // "WQ"
 new PowerRadix('10', 10).toString(base);   // "WQ"
 new PowerRadix(10, 10).toString(base);     // "WQ"
+```
+
+Or specify an array of characters to use as symbols for the base radix
+```js
+var base = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
+var stdBase10 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+new PowerRadix(base, ['W', 'Q']).toArray(stdBase10);   // [1, 0]
+new PowerRadix(base.join(''), ['W', 'Q']).toArray(10); // [1, 0]
+
+new PowerRadix(base, ['W', 'Q']).toString(stdBase10);   // "10"
+new PowerRadix(base.join(''), ['W', 'Q']).toString(10); // "10"
 ```
 
 Installing
