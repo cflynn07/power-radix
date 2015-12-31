@@ -8,8 +8,11 @@ power-radix
 
 [![NPM](https://nodei.co/npm/power-radix.png?compact=true)](https://nodei.co/npm/power-radix/)  
 
-Library for converting numbers from one radix representation (encoding) to another, with optional 
+Library for converting numbers from one radix representation (encoding) to another, with optional
 custom defined encodings. Inspired by rubyworks/radix.
+
+[power-radix-encodings(https://www.npmjs.com/package/power-radix-encodings)] is a useful collection
+of common encodings that are independently requireable.
 
 Features
 --------
@@ -86,25 +89,23 @@ Examples
 // Node.js standard library crypto module
 var crypto = require('crypto');
 
-var hexadecimalCharacterEncoding =
-  ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
-var decimalCharacterEncoding = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-var binaryCharacterEncoding = ['0', '1'];
-
 // Produce a SHA1 hash digest. SHA1 digests are 160 bits (20 bytes).
 var sha1HashDigest = crypto.createHash('sha1').update('').digest('hex');
 // "da39a3ee5e6b4b0d3255bfef95601890afd80709"
 
 // When represented in radix 2 (binary), the representation is 160 characters in length
-new PowerRadix(sha1HashDigest, hexadecimalCharacterEncoding).toString(binaryCharacterEncoding);
+new PowerRadix(sha1HashDigest, require('power-radix-encodings/base16-hexadecimal-lowercase'))
+  .toString(require('power-radix-encodings/base2-binary'));
 // "1101101000111001101000111110111001011110011010110100101100001101001100100101010110111111111011111001010101100000000110001001000010101111110110000000011100001001"
 
 // When represented in radix 10 (decimal), the representation is 49 (varies) characters in length
-new PowerRadix(sha1HashDigest, hexadecimalCharacterEncoding).toString(decimalCharacterEncoding);
+new PowerRadix(sha1HashDigest, require('power-radix-encodings/base16-hexadecimal-lowercase'))
+  .toString(require('power-radix-encodings/base10-decimal'));
 // "1245845410931227995499360226027473197403882391305"
 
 // When represented in radix 16 (hexadecimal), the representation is 40 characters in length
-new PowerRadix(sha1HashDigest, hexadecimalCharacterEncoding).toString(hexadecimalCharacterEncoding);
+new PowerRadix(sha1HashDigest, require('power-radix-encodings/base16-hexadecimal-lowercase'))
+  .toString(require('power-radix-encodings/base16-hexadecimal-lowercase'));
 // "da39a3ee5e6b4b0d3255bfef95601890afd80709"
 
 var radix255CharacterEncoding = [];
@@ -113,13 +114,15 @@ for(var i = 0; i < 256; i++) { radix255CharacterEncoding.push(i+''); }
 // When represented in radix 255, the representation is 20 characters in length (note:
 // "characters" are actually decimal characters concatenated together)
 
-new PowerRadix(sha1HashDigest, hexadecimalCharacterEncoding).toString(radix255CharacterEncoding);
+new PowerRadix(sha1HashDigest, require('power-radix-encodings/base16-hexadecimal-lowercase'))
+  .toString(radix255CharacterEncoding);
 // The decimal value of each of the 20 bytes of the sha1 hash digest
 //  ['218', '57', '163', '238', '94', '107', '75', '13', '50', '85', '191', '239', '149', '96', '24', '144', '175', '216', '7', '9']
 
 var radix255BinaryCharacterEncoding = [];
 for(var i = 0; i < 256; i++) { radix255BinaryCharacterEncoding.push(new PowerRadix(i, 10).toString(2)); }
-new PowerRadix(sha1HashDigest, hexadecimalCharacterEncoding).toString(radix255BinaryCharacterEncoding);
+new PowerRadix(sha1HashDigest, require('power-radix-encodings/base16-hexadecimal-lowercase'))
+  .toString(radix255BinaryCharacterEncoding);
 // The binary representations of each of the 20 bytes of the sha1 hash digest (note: each byte representation doesn't have padding leading zeros)
 // ['11011010', '111001', '10100011', '11101110', '1011110', '1101011', '1001011', '1101', '110010', '1010101', '10111111', '11101111', '10010101', '1100000', '11000', '10010000', '10101111', '11011000', '111', '1001']
 ```
