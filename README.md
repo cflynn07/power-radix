@@ -11,7 +11,7 @@ power-radix
 Library for converting numbers from one radix representation (encoding) to another, with optional
 custom defined encodings. Inspired by rubyworks/radix.
 
-[power-radix-encodings(https://www.npmjs.com/package/power-radix-encodings)] is a useful collection
+[power-radix-encodings](https://www.npmjs.com/package/power-radix-encodings) is a useful collection
 of common encodings that are independently requireable.
 
 Features
