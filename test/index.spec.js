@@ -37,7 +37,7 @@ describe('PowerRadix', function () {
 
   it('should convert [0..9] from radix n[2..62] to radix n[n+1..62] '+
      'using default character set', function () {
-    this.timeout(3000);
+    this.timeout(10000);
     var powerRadix;
     for (var j=0; j<10; j++) {
       for (var i=j+2; i<62; i++) {
