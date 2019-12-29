@@ -1,5 +1,8 @@
 name: Test
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   test:
     name: Test
@@ -15,3 +18,11 @@ jobs:
       - run: npm run report-coverage
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: primer/publish@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
