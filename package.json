@@ -4,9 +4,10 @@
   "description": "Library for converting numbers from one radix representation (encoding) to another, with optional custom defined encodings. Inspired by rubyworks/radix.",
   "main": "lib/index.js",
   "scripts": {
-    "lint": "./node_modules/.bin/jshint",
-    "test": "npm run lint; DEBUG=power-radix* NODE_PATH=./ lab -c",
-    "test-cov": "mkdir coverage; touch coverage/coverage.html; rm coverage/coverage.html; NODE_PATH=./ lab -c -r html > coverage/coverage.html; open -a 'Google Chrome' coverage/coverage.html"
+    "lint": "jshint",
+    "test": "npm run lint; NODE_PATH=./ mocha",
+    "test-cov": "npm run lint; NODE_PATH=./ nyc --reporter=lcovonly mocha",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
@@ -42,12 +43,13 @@
   },
   "homepage": "https://github.com/cflynn07/power-radix",
   "dependencies": {
-    "bigi": "^1.4.0",
-    "debug": "^2.1.1"
+    "bigi": "^1.4.2",
+    "debug": "^4.1.1"
   },
   "devDependencies": {
-    "code": "^1.3.0",
-    "jshint": "^2.6.3",
-    "lab": "^5.5.0"
+    "expect.js": "^0.3.1",
+    "jshint": "^2.10.3",
+    "mocha": "^6.2.2",
+    "nyc": "^15.0.0"
   }
 }

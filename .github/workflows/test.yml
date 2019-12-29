@@ -10,4 +10,8 @@ jobs:
         with:
           node-version: '10.x'
       - run: npm install
-      - run: npm test
+      - run: npm install -g codecov
+      - run: npm run test-cov
+      - run: npm run report-coverage
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
