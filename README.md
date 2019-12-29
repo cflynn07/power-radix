@@ -1,6 +1,6 @@
 power-radix
 ===========
-[![Build Status](https://github.com/cflynn07/power-radix/workflows/test/badge.svg)](https://github.com/cflynn07/power-radix/actions)
+[![Build Status](https://github.com/cflynn07/power-radix/workflows/Test/badge.svg)](https://github.com/cflynn07/power-radix/actions)
 [![Code Climate](https://codeclimate.com/github/cflynn07/power-radix/badges/gpa.svg)](https://codeclimate.com/github/cflynn07/power-radix)
 [![codecov](https://codecov.io/gh/cflynn07/power-radix/branch/master/graph/badge.svg)](https://codecov.io/gh/cflynn07/power-radix)
 [![Dependency Status](https://david-dm.org/cflynn07/power-radix.svg)](https://david-dm.org/cflynn07/power-radix)
