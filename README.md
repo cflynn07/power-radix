@@ -5,6 +5,7 @@ power-radix
 [![codecov](https://codecov.io/gh/cflynn07/power-radix/branch/master/graph/badge.svg)](https://codecov.io/gh/cflynn07/power-radix)
 [![Dependency Status](https://david-dm.org/cflynn07/power-radix.svg)](https://david-dm.org/cflynn07/power-radix)
 [![devDependency Status](https://david-dm.org/cflynn07/power-radix/dev-status.svg)](https://david-dm.org/cflynn07/power-radix#info=devDependencies)
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 [![NPM](https://nodei.co/npm/power-radix.png?compact=true)](https://nodei.co/npm/power-radix/)  
 

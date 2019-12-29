@@ -9,6 +9,9 @@
     "test-cov": "npm run lint; NODE_PATH=./ nyc --reporter=lcovonly mocha",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
+  "standard": {
+    "env": ["mocha"]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/cflynn07/power-radix.git"
@@ -48,8 +51,8 @@
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "jshint": "^2.10.3",
     "mocha": "^6.2.2",
-    "nyc": "^15.0.0"
+    "nyc": "^15.0.0",
+    "standard": "^14.3.1"
   }
 }
