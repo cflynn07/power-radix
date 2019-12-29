@@ -51,7 +51,7 @@ new PowerRadix([100, 10], 256).toArray(10); // ['2', '5', '6', '1', '0']
 new PowerRadix([100, 10], 256).toString(10); // "25610"
 ```
 
-power-radix also supports custom character encodings as base and targed radixes. By default,
+power-radix also supports custom character encodings as base and target radixes. By default,
 power-radix uses the following character encoding:  
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`
 
