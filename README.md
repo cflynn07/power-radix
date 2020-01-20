@@ -136,6 +136,11 @@ $ npm test
 npm run test-cov # will auto-open Google Chrome with html coverage report
 ```
 
+Authors
+-------
+* [Casey Flynn](http://github.com/cflynn07) - <https://cflynn.us/>
+
 License
 -------
-[MIT](https://raw.githubusercontent.com/cflynn07/power-radix/master/LICENSE)
+power-radix is free and unencumbered public domain software. For more
+information, see <http://unlicense.org/> or the accompanying UNLICENSE file.
