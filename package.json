@@ -1,6 +1,6 @@
 {
   "name": "power-radix",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "description": "Library for converting numbers from one radix representation (encoding) to another, with optional custom defined encodings. Inspired by rubyworks/radix.",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +10,9 @@
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "standard": {
-    "env": ["mocha"]
+    "env": [
+      "mocha"
+    ]
   },
   "repository": {
     "type": "git",
