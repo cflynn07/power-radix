@@ -12,8 +12,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
-      - run: npm install
       - run: npm install -g codecov
+      - run: npm ci
+      - run: npm audit
       - run: npm run test-cov
       - run: npm run report-coverage
         env:
