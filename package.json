@@ -1,8 +1,11 @@
 {
   "name": "power-radix",
-  "version": "2.5.6",
+  "version": "3.0.0",
   "description": "Library for converting numbers from one radix representation (encoding) to another, with optional custom defined encodings. Inspired by rubyworks/radix.",
   "main": "lib/index.js",
+  "engines": {
+    "node": ">= 10.0.0"
+  },
   "scripts": {
     "lint": "jshint",
     "test": "npm run lint; NODE_PATH=./ mocha",
@@ -47,11 +50,8 @@
     "url": "https://github.com/cflynn07/power-radix/issues"
   },
   "homepage": "https://github.com/cflynn07/power-radix",
-  "dependencies": {
-    "bigi": "^1.4.2",
-    "debug": "^4.1.1"
-  },
   "devDependencies": {
+    "debug": "^4.1.1",
     "expect.js": "^0.3.1",
     "mocha": "^6.2.2",
     "nyc": "^15.0.0",
