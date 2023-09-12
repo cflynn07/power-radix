@@ -1,11 +1,10 @@
 power-radix
 ===========
+[![npm version](https://badge.fury.io/js/power-radix.svg)](https://www.npmjs.com/package/power-radix)
+![npm](https://img.shields.io/npm/dt/power-radix)
 [![Build Status](https://github.com/cflynn07/power-radix/workflows/Publish/badge.svg)](https://github.com/cflynn07/power-radix/actions)
-[![npm version](https://badge.fury.io/js/power-radix.svg)](https://badge.fury.io/js/power-radix)
 [![Code Climate](https://codeclimate.com/github/cflynn07/power-radix/badges/gpa.svg)](https://codeclimate.com/github/cflynn07/power-radix)
 [![codecov](https://codecov.io/gh/cflynn07/power-radix/branch/master/graph/badge.svg)](https://codecov.io/gh/cflynn07/power-radix)
-[![Dependency Status](https://david-dm.org/cflynn07/power-radix.svg)](https://david-dm.org/cflynn07/power-radix)
-[![devDependency Status](https://david-dm.org/cflynn07/power-radix/dev-status.svg)](https://david-dm.org/cflynn07/power-radix#info=devDependencies)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 Library for converting numbers from one radix representation (encoding) to another, with optional
