@@ -1,8 +1,8 @@
 name: Test
 on:
   push:
-    branches:
-      - '!master'
+    branches-ignore:
+      - 'master'
 jobs:
   test:
     name: Test
