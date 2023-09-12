@@ -1,6 +1,6 @@
 {
   "name": "power-radix",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Library for converting numbers from one radix representation (encoding) to another, with optional custom defined encodings. Inspired by rubyworks/radix.",
   "main": "lib/index.js",
   "engines": {
