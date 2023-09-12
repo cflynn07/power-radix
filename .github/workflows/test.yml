@@ -1,8 +1,8 @@
 name: Test
 on:
   push:
-    branches:
-      - '!master'
+    branches-ignore:
+      - 'master'
 jobs:
   test:
     name: Test
@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '12.x'
       - run: npm install -g codecov
       - run: npm ci
       - run: npm audit

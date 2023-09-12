@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '12.x'
       - run: npm install
       - run: npm install -g codecov
       - run: npm run test-cov
@@ -28,7 +28,7 @@ jobs:
           ref: 'master'
       - uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
       - run: npm publish
         env:
