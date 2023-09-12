@@ -1,14 +1,14 @@
 'use strict'
 
-var expect = require('expect.js')
+const expect = require('expect.js')
 
-var PowerRadix = require('../lib/index')
-var encodings = require('./fixtures/encodings')
+const PowerRadix = require('../lib/index')
+const encodings = require('./fixtures/encodings')
 
 describe('PowerRadix', function () {
   it('should throw an exception when passed invalid arguments', function () {
-    var powerRadix = new PowerRadix(['F', 'F'], ['A', 'B'])
-    var throws = function () {
+    const powerRadix = new PowerRadix(['F', 'F'], ['A', 'B'])
+    const throws = function () {
       powerRadix.toString(10)
     }
     expect(throws).to.throwException(function (e) {
@@ -17,7 +17,7 @@ describe('PowerRadix', function () {
   })
 
   it('should handle empty argument', function (done) {
-    var powerRadix
+    let powerRadix
     powerRadix = new PowerRadix([], 10)
     expect(powerRadix).to.be.ok()
     expect(powerRadix.toArray(10)).to.eql(['0'])
@@ -38,13 +38,13 @@ describe('PowerRadix', function () {
   it('should convert [0..9] from radix n[2..62] to radix n[n+1..62] ' +
      'using default character set', function () {
     this.timeout(10000)
-    var powerRadix
-    for (var j = 0; j < 10; j++) {
-      for (var i = j + 2; i < 62; i++) {
+    let powerRadix
+    for (let j = 0; j < 10; j++) {
+      for (let i = j + 2; i < 62; i++) {
         powerRadix = new PowerRadix([j], i)
         expect(powerRadix).to.be.ok()
         var res
-        for (var k = i; k < 62; k++) {
+        for (let k = i; k < 62; k++) {
           res = powerRadix.toArray(k)
           expect(res).to.eql([j + ''])
           res = powerRadix.toString(k)
@@ -55,7 +55,7 @@ describe('PowerRadix', function () {
   })
 
   it('should convert from base 2 to base 8', function (done) {
-    var powerRadix;
+    let powerRadix;
     [
       ['0', ['0'], ['A']],
       ['1', ['1'], ['B']],
@@ -98,7 +98,7 @@ describe('PowerRadix', function () {
   })
 
   it('should convert from base 2 to base 10', function (done) {
-    var powerRadix;
+    let powerRadix;
     [
       ['0', ['0'], ['A']],
       ['1', ['1'], ['B']],
@@ -141,7 +141,7 @@ describe('PowerRadix', function () {
   })
 
   it('should convert from base 2 to base 16', function (done) {
-    var powerRadix;
+    let powerRadix;
     [
       ['0', ['0'], ['A']],
       ['1', ['1'], ['B']],
@@ -185,12 +185,12 @@ describe('PowerRadix', function () {
 
   // http://stackoverflow.com/questions/26083943/converting-a-large-base-62-value-to-base-16-with-javascript/33072743#33072743
   it('should convert from base 62 to base 16', function (done) {
-    var base16Encoding = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+    const base16Encoding = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
     // happens to be identical to default encoding used by PowerRadix
-    var base62Encoding = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
-    var base62Val = '4u8LPK581OHn7kRqRqP9ks'
-    var expectedBase16ConvertedVal = 'A12D08BC6D93BC4E8EA847434C960416'
-    var powerRadix = new PowerRadix(base62Val, base62Encoding)
+    const base62Encoding = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
+    const base62Val = '4u8LPK581OHn7kRqRqP9ks'
+    const expectedBase16ConvertedVal = 'A12D08BC6D93BC4E8EA847434C960416'
+    const powerRadix = new PowerRadix(base62Val, base62Encoding)
     expect(powerRadix.toString(base16Encoding)).to.equal(expectedBase16ConvertedVal)
     done()
   })
